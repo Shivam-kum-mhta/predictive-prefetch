@@ -1,0 +1,327 @@
+GET localhost:9090/model/predict
+
+
+{
+	"predictions": [
+		{
+			"article_id": "N306",
+			"probability": 0.06724749917889032,
+			"category": "movies",
+			"subcategory": "movies-celebrity",
+			"title": "Kevin Spacey Won't Be Charged in Sexual Assault Case After Accuser Dies",
+			"abstract": "The Los Angeles County District Attorney's Office has formally dropped a case against actor Kevin Spacey, after the accuser died.",
+			"url": "https://assets.msn.com/labs/mind/AAJy6rv.html",
+			"entities": [
+				{
+					"Label": "Kevin Spacey",
+					"Type": "P",
+					"WikidataId": "Q25144",
+					"Confidence": 1.0,
+					"OccurrenceOffsets": [
+						0
+					],
+					"SurfaceForms": [
+						"Kevin Spacey"
+					]
+				}
+			],
+			"keywords": [
+				{
+					"Label": "Kevin Spacey",
+					"Type": "P",
+					"WikidataId": "Q25144",
+					"Confidence": 1.0,
+					"OccurrenceOffsets": [
+						92
+					],
+					"SurfaceForms": [
+						"Kevin Spacey"
+					]
+				},
+				{
+					"Label": "Los Angeles County District Attorney",
+					"Type": "O",
+					"WikidataId": "Q15242890",
+					"Confidence": 1.0,
+					"OccurrenceOffsets": [
+						4
+					],
+					"SurfaceForms": [
+						"Los Angeles County District Attorney's Office"
+					]
+				}
+			],
+			"views": 0,
+			"created_at": "2025-10-06 17:26:19"
+		},
+		{
+			"article_id": "N11005",
+			"probability": 0.0651177799150677,
+			"category": "news",
+			"subcategory": "newspolitics",
+			"title": "Nunes Aide Is Leaking the Ukraine Whistleblower's Name, Sources Say",
+			"abstract": "A top aide to Rep. Devin Nunes has been providing conservative politicians and journalists with information and misinformation about the anonymous whistleblower who triggered the biggest crisis of Donald Trump's presidency, two knowledgeable sources tell The Daily Beast.",
+			"url": "https://assets.msn.com/labs/mind/AAJuYyM.html",
+			"entities": [
+				{
+					"Label": "Devin Nunes",
+					"Type": "P",
+					"WikidataId": "Q539493",
+					"Confidence": 1.0,
+					"OccurrenceOffsets": [
+						0
+					],
+					"SurfaceForms": [
+						"Nunes"
+					]
+				},
+				{
+					"Label": "Ukraine",
+					"Type": "G",
+					"WikidataId": "Q212",
+					"Confidence": 0.999,
+					"OccurrenceOffsets": [
+						26
+					],
+					"SurfaceForms": [
+						"Ukraine"
+					]
+				}
+			],
+			"keywords": [
+				{
+					"Label": "Donald Trump",
+					"Type": "P",
+					"WikidataId": "Q22686",
+					"Confidence": 1.0,
+					"OccurrenceOffsets": [
+						197
+					],
+					"SurfaceForms": [
+						"Donald Trump"
+					]
+				},
+				{
+					"Label": "Republican Party (United States)",
+					"Type": "O",
+					"WikidataId": "Q29468",
+					"Confidence": 0.989,
+					"OccurrenceOffsets": [
+						14
+					],
+					"SurfaceForms": [
+						"Rep."
+					]
+				},
+				{
+					"Label": "Devin Nunes",
+					"Type": "P",
+					"WikidataId": "Q539493",
+					"Confidence": 1.0,
+					"OccurrenceOffsets": [
+						19
+					],
+					"SurfaceForms": [
+						"Devin Nunes"
+					]
+				},
+				{
+					"Label": "The Daily Beast",
+					"Type": "M",
+					"WikidataId": "Q1308139",
+					"Confidence": 1.0,
+					"OccurrenceOffsets": [
+						255
+					],
+					"SurfaceForms": [
+						"The Daily Beast"
+					]
+				}
+			],
+			"views": 0,
+			"created_at": "2025-10-06 17:26:20"
+		},
+		{
+			"article_id": "N54225",
+			"probability": 0.044724104540281424,
+			"category": "news",
+			"subcategory": "newsus",
+			"title": "Multiple Houses on Fire After Plane Crashes in NJ",
+			"abstract": "At least two houses are on fire in Colonia, New Jersey, after a plane crash, according to the Colonia Fire Department. A Cessna 414 crashed into a home on Berkley Avenue at 11 a.m. Tuesday, according to the FAA. The FAA will conduct an investigation into the cause of the crash. The number of people aboard and their conditions are unknown. The area is a heavy residential area with tree-lined streets. News 4's Dennis Protsko, who is part of the...",
+			"url": "https://assets.msn.com/labs/mind/AAJwuEY.html",
+			"entities": [],
+			"keywords": [
+				{
+					"Label": "Federal Aviation Administration",
+					"Type": "O",
+					"WikidataId": "Q335357",
+					"Confidence": 0.998,
+					"OccurrenceOffsets": [
+						207,
+						216
+					],
+					"SurfaceForms": [
+						"FAA",
+						"FAA"
+					]
+				},
+				{
+					"Label": "Cessna",
+					"Type": "O",
+					"WikidataId": "Q308889",
+					"Confidence": 1.0,
+					"OccurrenceOffsets": [
+						121
+					],
+					"SurfaceForms": [
+						"Cessna"
+					]
+				},
+				{
+					"Label": "New Jersey",
+					"Type": "G",
+					"WikidataId": "Q1408",
+					"Confidence": 0.998,
+					"OccurrenceOffsets": [
+						44
+					],
+					"SurfaceForms": [
+						"New Jersey"
+					]
+				},
+				{
+					"Label": "Colonia, New Jersey",
+					"Type": "G",
+					"WikidataId": "Q978569",
+					"Confidence": 1.0,
+					"OccurrenceOffsets": [
+						35
+					],
+					"SurfaceForms": [
+						"Colonia"
+					]
+				}
+			],
+			"views": 0,
+			"created_at": "2025-10-06 17:26:19"
+		},
+		{
+			"article_id": "N619",
+			"probability": 0.019812842848295653,
+			"category": "news",
+			"subcategory": "newsus",
+			"title": "Cornell student, 18, found dead in gorge after frat party, reports say",
+			"abstract": "A top Ivy League student was found dead Saturday afternoon in a New York gorge after he left a fraternity party and disappeared Thursday night, according to reports.",
+			"url": "https://assets.msn.com/labs/mind/AAJuVER.html",
+			"entities": [
+				{
+					"Label": "Cornell University",
+					"Type": "O",
+					"WikidataId": "Q49115",
+					"Confidence": 0.999,
+					"OccurrenceOffsets": [
+						0
+					],
+					"SurfaceForms": [
+						"Cornell"
+					]
+				}
+			],
+			"keywords": [
+				{
+					"Label": "Ivy League",
+					"Type": "O",
+					"WikidataId": "Q49113",
+					"Confidence": 1.0,
+					"OccurrenceOffsets": [
+						6
+					],
+					"SurfaceForms": [
+						"Ivy League"
+					]
+				}
+			],
+			"views": 0,
+			"created_at": "2025-10-06 17:26:19"
+		},
+		{
+			"article_id": "N18285",
+			"probability": 0.019490158111352834,
+			"category": "sports",
+			"subcategory": "football_nfl",
+			"title": "NFL Week 9 Power Rankings: More ammo for Belichick as greatest coach ever",
+			"abstract": "Doug Farrar offers up myriad surprises in Touchdown Wire's Week 9 NFL Power Rankings.",
+			"url": "https://assets.msn.com/labs/mind/AAJvq61.html",
+			"entities": [
+				{
+					"Label": "Bill Belichick",
+					"Type": "P",
+					"WikidataId": "Q720027",
+					"Confidence": 0.999,
+					"OccurrenceOffsets": [
+						41
+					],
+					"SurfaceForms": [
+						"Belichick"
+					]
+				},
+				{
+					"Label": "Sports rating system",
+					"Type": "C",
+					"WikidataId": "Q7579939",
+					"Confidence": 1.0,
+					"OccurrenceOffsets": [
+						11
+					],
+					"SurfaceForms": [
+						"Power Rankings"
+					]
+				},
+				{
+					"Label": "National Football League",
+					"Type": "O",
+					"WikidataId": "Q1215884",
+					"Confidence": 1.0,
+					"OccurrenceOffsets": [
+						0
+					],
+					"SurfaceForms": [
+						"NFL"
+					]
+				}
+			],
+			"keywords": [
+				{
+					"Label": "Sports rating system",
+					"Type": "C",
+					"WikidataId": "Q7579939",
+					"Confidence": 1.0,
+					"OccurrenceOffsets": [
+						70
+					],
+					"SurfaceForms": [
+						"Power Rankings"
+					]
+				},
+				{
+					"Label": "National Football League",
+					"Type": "O",
+					"WikidataId": "Q1215884",
+					"Confidence": 1.0,
+					"OccurrenceOffsets": [
+						66
+					],
+					"SurfaceForms": [
+						"NFL"
+					]
+				}
+			],
+			"views": 0,
+			"created_at": "2025-10-06 17:26:20"
+		}
+	],
+	"method": "predict_next",
+	"model_type": "sparse_markov_chain",
+	"status": "success",
+	"error": null
+}

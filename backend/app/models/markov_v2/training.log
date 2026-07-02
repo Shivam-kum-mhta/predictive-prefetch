@@ -1,0 +1,2 @@
+/home/hmnt/Documents/GitHub/predictive-prefetch/backend/venv/lib/python3.12/site-packages/scipy/sparse/_index.py:210: SparseEfficiencyWarning: Changing the sparsity structure of a csr_matrix is expensive. lil and dok are more efficient.
+  self._set_arrayXarray(i, j, x)

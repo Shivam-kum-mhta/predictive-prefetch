@@ -1,0 +1,18 @@
+Markov Chain Model Evaluation Results
+==================================================
+
+Hit Rate @ k:
+  Hit Rate @  1: 0.0018 (0.18%)
+  Hit Rate @  2: 0.0022 (0.22%)
+  Hit Rate @  5: 0.0034 (0.34%)
+  Hit Rate @ 10: 0.0047 (0.47%)
+  Hit Rate @ 15: 0.0059 (0.59%)
+  Hit Rate @ 20: 0.0068 (0.68%)
+
+Mean Reciprocal Rank (MRR): 0.0026
+Average Rank: 7.19
+
+Evaluation Statistics:
+  Total Evaluations: 144436
+  Successful Predictions: 144436
+  Prediction Success Rate: 1.0000

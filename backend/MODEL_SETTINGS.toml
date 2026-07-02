@@ -1,0 +1,49 @@
+[model]
+MODEL_PATH = "markov_v1/markov_model.pkl"
+MODEL_TYPE = "sparse_markov_chain"
+USE_CATEGORY_BLENDING = false
+
+[recommendation]
+INPUT_ATMOST = 5     # atmost as many articles the user has read (input to the prediction model)
+OUTPUT_ATMOST = 30   # atmost as many articles recommended by the system
+OUTPUT_ATLEAST = 5
+
+[recommendation.ensemble]
+history_atmost = 25             # how many recent articles to consider from session history
+exponential_decay_factor = 0.15 # decay factor for exponential decay (each older article gets weight * decay_factor)
+
+
+[sliders]
+cur_date_fake = "2025-10-06 17:26:21" # fake date so that recency works
+
+# N11827
+
+[sliders.recency_bias] # more recent articles have increased probabilities
+enable = false
+class = "RecencyBias"
+weight = 3 # weight of the slider
+affect_until = 360 # days ago
+
+[sliders.popularity_bias] # more relevant articles have increased probabilities
+enable = false
+class = "PopularityBias"
+weight = 1.2 # weight of the slider
+distribution = "linear" # ["linear", "exponential", "logarithmic"]
+exponential_base = 4.0 # base of the exponential distribution
+logarithmic_base = 4.0 # base of the logarithmic distribution
+
+[sliders.title_correlation_bias] # articles with similar titles to user's last read have increased probabilities
+enable = true
+class = "TitleCorrelationBias"
+weight = 1.6 # weight of the slider
+
+
+[sliders.category_bias] # articles in same category as user's last read have increased probabilities
+enable = true
+class = "CategoryBias"
+weight = 1.1 # weight of the slider
+
+[sliders.subcategory_bias] # articles in same subcategory as user's last read have increased probabilities
+enable = false
+class = "SubcategoryBias"
+weight = 1.5 # weight of the slider

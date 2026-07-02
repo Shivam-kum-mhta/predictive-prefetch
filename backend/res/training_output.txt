@@ -1,0 +1,251 @@
+================================================================================
+LOADING MIND DATASET
+================================================================================
+
+Loading behaviors data...
+  Training behaviors: 156,965
+  Dev behaviors: 73,152
+
+Loading news data...
+  Training news articles: 51,282
+  Dev news articles: 42,416
+
+================================================================================
+PREPARING TRAINING DATA
+================================================================================
+
+Preparing sequences (min_length=2)...
+  Valid NewsIDs: 51,282
+  Sequences extracted: 151,565
+  Skipped (too short or invalid): 5,400
+  Sequence length stats:
+    Min: 2
+    Max: 558
+    Mean: 33.69
+    Median: 20
+
+================================================================================
+TRAINING SPARSE MARKOV CHAIN MODEL
+================================================================================
+Fitting Markov Chain...
+Initialized with 33190 states
+Processed 10000 sequences...
+Processed 20000 sequences...
+Processed 30000 sequences...
+Processed 40000 sequences...
+Processed 50000 sequences...
+Processed 60000 sequences...
+Processed 70000 sequences...
+Processed 80000 sequences...
+Processed 90000 sequences...
+Processed 100000 sequences...
+Processed 110000 sequences...
+Processed 120000 sequences...
+Processed 130000 sequences...
+Processed 140000 sequences...
+Processed 150000 sequences...
+Processed 151565 sequences with 4953912 total transitions
+Non-zero transitions: 632044
+Sparsity: 0.999426
+Computing transition probabilities...
+Found 529 states with no outgoing transitions
+Transition matrix: 33190x33190 with 18189554 non-zero elements
+
+Training completed in 48.24 seconds
+
+
+Computing steady state using power method...
+Converged after 108 iterations
+==================================================
+SPARSE MARKOV CHAIN STATISTICS
+==================================================
+States: 33,190
+Total transitions: 4,953,912
+Non-zero transitions: 18,189,554
+Sparsity: 0.983488
+Memory usage: 208.54 MB
+Entropy: 5.4121 bits
+States with no outgoing transitions: 0
+
+Top 10 most probable states (steady state):
+   1. N3491: 0.014538
+   2. N36424: 0.011856
+   3. N33981: 0.010778
+   4. N22816: 0.010141
+   5. N15676: 0.009880
+   6. N35671: 0.008846
+   7. N48925: 0.007553
+   8. N5379: 0.006648
+   9. N40509: 0.006608
+  10. N2678: 0.006205
+
+Memory efficiency:
+  Sparse matrix: 208.54 MB
+  Dense matrix would be: 8.2 GB
+  Memory saved: 8195.8 MB
+==================================================
+
+Validating model...
+  ✓ fitted: True
+  ✓ rows_sum_to_one: True
+  ✓ non_negative_probs: True
+  ✓ probs_le_one: True
+  ✓ state_consistency: True
+
+Saving model to markov_model.pkl...
+Model saved to markov_model.pkl
+
+================================================================================
+PREPARING TEST DATA
+================================================================================
+Total unique news articles: 65,238
+
+Preparing test data (min_history=2)...
+  Test cases: 68,114
+  Skipped: 5,038
+
+================================================================================
+EVALUATING MODEL
+================================================================================
+
+Evaluating 68,114 test cases...
+  Processed 10,000 / 68,114 test cases...
+  Processed 20,000 / 68,114 test cases...
+  Processed 30,000 / 68,114 test cases...
+  Processed 40,000 / 68,114 test cases...
+  Processed 50,000 / 68,114 test cases...
+  Processed 60,000 / 68,114 test cases...
+
+--------------------------------------------------------------------------------
+EVALUATION RESULTS
+--------------------------------------------------------------------------------
+
+Coverage: 98.19% (66,878 / 68,114)
+Skipped: 1,236 (unknown states/targets)
+
+Hit Rate @ K:
+  Hit Rate @  1:   2.78%
+  Hit Rate @  5:   8.61%
+  Hit Rate @ 10:  13.29%
+  Hit Rate @ 20:  19.62%
+  Hit Rate @ 50:  30.25%
+
+Mean Reciprocal Rank (MRR): 0.0620
+--------------------------------------------------------------------------------
+
+================================================================================
+PREDICTION EXAMPLES
+================================================================================
+
+Example 1:
+  History length: 14
+  Last 5 history items:
+    N6616 (news) - Felicity Huffman Smiles as She Begins Community Service Following Prison Release
+    N47686 (lifestyle) - Queen Elizabeth Finally Had Her Dream Photoshoot, Thanks to Royal Dresser Angela Kelly
+    N63573 (news) - Hundreds of thousands of people in California are downriver of a dam that 'could fail'
+    N38895 (news) - Alexandria Ocasio-Cortez 'sincerely' apologizes for blocking ex-Brooklyn politician on Twitter, settles federal lawsuit
+    N30924 (health) - The Rock's Gnarly Palm Is a Testament to Life Without Lifting Gloves
+  Target: N35671 (tv) - Donald Trump Jr. reflects on explosive 'View' chat: 'I don't think they like me much anymore'
+  Top 10 predictions:
+     1. N7019 (finance): 0.041398 - America shockingly owes over $6 trillion to these countries
+     2. N14761 (weather): 0.028519 - Niagara Falls: Boat stuck on rocks 101 years dislodged
+     3. N52551 (tv): 0.024839 - Pamela Anderson gets backlash after wearing a Native American headdress for Halloween
+     4. N1843 (tv): 0.023919 - Survivor Contestant Rudy Boesch Dies at 91 After Long Battle with Alzheimer's Disease
+     5. N53895 (sports): 0.022079 - Tom Brady explains why he's angry at this point in the football season
+     6. N34564 (sports): 0.021159 - Potential Florida State football coaching targets
+     7. N26364 (sports): 0.020239 - Reports: LSU LB Michael Divinity removed from team days before Alabama game
+     8. N30765 (movies): 0.018399 - 16 of the Most Historically Inaccurate Movies Ever
+     9. N1969 (foodanddrink): 0.016559 - Papa John's introduces first new pizza crust flavor in 35 years
+    10. N4052 (news): 0.015639 - California struggles to keep illegal guns and ammunition from crossing state lines
+
+Example 2:
+  History length: 12
+  Last 5 history items:
+    N34775 (news) - Massive fentanyl seizure 'enough to kill everyone' in Ohio, officials say
+    N33742 (finance) - Apple is laying the groundwork for an iPhone subscription
+    N50020 (weather) - 15 reasons we should get rid of daylight saving time
+    N57061 (finance) - Capital One customers can't withdraw money after outage
+    N30924 (health) - The Rock's Gnarly Palm Is a Testament to Life Without Lifting Gloves
+  Target: N6778 (lifestyle) - A part of Windsor Castle that's been closed to the public for over 150 years just reopened   and it's been completely revamped. Take a peek inside.
+  Top 10 predictions:
+     1. N7019 (finance): 0.041398 - America shockingly owes over $6 trillion to these countries
+     2. N14761 (weather): 0.028519 - Niagara Falls: Boat stuck on rocks 101 years dislodged
+     3. N52551 (tv): 0.024839 - Pamela Anderson gets backlash after wearing a Native American headdress for Halloween
+     4. N1843 (tv): 0.023919 - Survivor Contestant Rudy Boesch Dies at 91 After Long Battle with Alzheimer's Disease
+     5. N53895 (sports): 0.022079 - Tom Brady explains why he's angry at this point in the football season
+     6. N34564 (sports): 0.021159 - Potential Florida State football coaching targets
+     7. N26364 (sports): 0.020239 - Reports: LSU LB Michael Divinity removed from team days before Alabama game
+     8. N30765 (movies): 0.018399 - 16 of the Most Historically Inaccurate Movies Ever
+     9. N1969 (foodanddrink): 0.016559 - Papa John's introduces first new pizza crust flavor in 35 years
+    10. N4052 (news): 0.015639 - California struggles to keep illegal guns and ammunition from crossing state lines
+
+Example 3:
+  History length: 8
+  Last 5 history items:
+    N16233 (news) - Felicity Huffman Is Scheduled to Be Released from Prison on October 27 After Serving 13 Days
+    N61704 (lifestyle) - Who Wrote the Most Popular Book the Year You Were Born?
+    N51706 (sports) - Former NFL lineman Justin Bannan arrested for attempted murder
+    N53033 (news) - CNN Poll: Biden's lead in Democratic primary hits widest margin since April
+    N15634 (entertainment) - The Best Celebrity Halloween Costumes Ever
+  Target: N3259 (sports) - Mayfield's postgame outfit gets all the memes
+  Top 10 predictions:
+     1. N11700 (entertainment): 0.028526 - Must-See Fashion Police Moments to Check Out This Week
+     2. N41351 (finance): 0.026149 - China's Liu Confirms Phase One of U.S. Trade Deal is in Progress
+     3. N26837 (lifestyle): 0.026149 - Chubby Fingers Are Getting Their Due Thanks To Social Media Movement
+     4. N1066 (entertainment): 0.023772 - Celebrity weddings of 2019
+     5. N16715 (news): 0.017433 - Mitch McConnell snubbed by Elijah Cummings' pallbearer in handshake line at U.S. Capitol ceremony
+     6. N57886 (lifestyle): 0.015848 - Here's Jennifer Lopez Wearing the Most Extra Bejeweled Wedding Dress
+     7. N16290 (news): 0.015848 - Missouri man missing for a week found alive in car that crashed into ravine
+     8. N5978 (finance): 0.015055 - Eric Tse, 24, just became a billionaire overnight
+     9. N31663 (movies): 0.014263 - Arnold Schwarzenegger's photo flashback
+    10. N47765 (sports): 0.014263 - ALCS Game 4: Yankee Stadium in October no match for Houston Astros
+
+Example 4:
+  History length: 18
+  Last 5 history items:
+    N34452 (travel) - The Top 10 Safari Lodges in Africa
+    N24298 (video) - Cummings' widow responds to Trump's attacks, gets standing ovation
+    N29361 (news) - We all 'can get it wrong': Mike Pompeo suggests William Taylor misunderstood Ukraine controversy
+    N2597 (sports) - Hernandez: LeBron James and Anthony Davis Show feels like Showtime Lakers 2.0
+    N28926 (sports) - Tiger Woods takes outright lead at rain-delayed Zozo Championship
+  Target: N28247 (news) - O'Hare breaks ground on final runway extension ahead of $8.5B terminal revamp
+  Top 10 predictions:
+     1. N1766 (sports): 0.059006 - Chasing history: Tiger Woods eyes record win No. 82 at Zozo Championship
+     2. N13231 (news): 0.044255 - Homeowner says a mystery object damaged his house. It didn't fall from a plane, FAA says
+     3. N24298 (video): 0.042702 - Cummings' widow responds to Trump's attacks, gets standing ovation
+     4. N39677 (news): 0.034938 - 420 Pounds Of Marijuana Found In Truck At Darien Rest Stop: CSP
+     5. N35560 (entertainment): 0.033385 - Megyn Kelly and Rose McGowan selfie sparks speculation: 'Brainstorming'
+     6. N29361 (news): 0.029503 - We all 'can get it wrong': Mike Pompeo suggests William Taylor misunderstood Ukraine controversy
+     7. N538 (sports): 0.028727 - Horse dies after training track incident at Santa Anita
+     8. N5183 (sports): 0.023292 - Saturday takeaways: Oklahoma upset shakes up College Football Playoff picture
+     9. N712 (sports): 0.021739 - Gronkowski suggests that he'll unretire if NFL legalizes CBD
+    10. N51618 (news): 0.018634 - 8-year-old hailed as hero for stopping potential school shooting
+
+Example 5:
+  History length: 4
+  Last 5 history items:
+    N51692 (tv) - Kelly Ripa Jokes Son Michael Is Experiencing 'Extreme Poverty' in Brooklyn
+    N18285 (sports) - NFL Week 9 Power Rankings: More ammo for Belichick as greatest coach ever
+    N26015 (entertainment) - Celebs who announced pregnancies in 2019
+    N22679 (sports) - Dissecting the softer, gentler Tiger Woods
+  Target: N55556 (finance) - Why President Trump's kids are probably celebrating his move to Florida
+  Top 10 predictions:
+     1. N46394 (sports): 0.142857 - LeBron James hires taco truck to feed first responders fighting Los Angeles fire
+     2. N63180 (music): 0.102041 - Taylor Swift can't shake 'Shake It Off' copyright suit reinstated by federal court panel
+     3. N53883 (health): 0.102041 - This Mom Had a Hilarious Response to a Man Who Told Her to 'Cover Up' While Breastfeeding in Public
+     4. N40781 (sports): 0.102041 - Mike Preston: Patriots are unbeaten but not unbeatable, and the Ravens have a chance in a wide-open AFC
+     5. N619 (news): 0.102041 - Cornell student, 18, found dead in gorge after frat party, reports say
+     6. N41710 (sports): 0.081633 - Osaka withdraws from WTA finals with shoulder injury
+     7. N5351 (video): 0.081633 - Drone video shows the devastated compound where al-Baghdadi died
+     8. N27756 (finance): 0.071429 - Louis Vuitton owner offers $14.5 billion for jeweler Tiffany
+     9. N62634 (finance): 0.051020 - Trump education official to resign and call for mass student loan forgiveness
+    10. N49134 (sports): 0.040816 - Matt Tifft will miss rest of season after suffering seizure at Martinsville
+
+================================================================================
+SAVING RESULTS
+================================================================================
+Results saved to evaluation_results.pkl
+
+================================================================================
+TRAINING AND EVALUATION COMPLETE!
+================================================================================

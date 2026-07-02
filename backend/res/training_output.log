@@ -1,0 +1,253 @@
+/home/hmnt/Documents/GitHub/predictive-prefetch/backend/venv/lib/python3.12/site-packages/scipy/sparse/_index.py:210: SparseEfficiencyWarning: Changing the sparsity structure of a csr_matrix is expensive. lil and dok are more efficient.
+  self._set_arrayXarray(i, j, x)
+================================================================================
+LOADING MIND DATASET
+================================================================================
+
+Loading behaviors data...
+  Training behaviors: 156,965
+  Dev behaviors: 73,152
+
+Loading news data...
+  Training news articles: 51,282
+  Dev news articles: 42,416
+
+================================================================================
+PREPARING TRAINING DATA
+================================================================================
+
+Preparing sequences (min_length=2)...
+  Valid NewsIDs: 51,282
+  Sequences extracted: 151,565
+  Skipped (too short or invalid): 5,400
+  Sequence length stats:
+    Min: 2
+    Max: 558
+    Mean: 33.69
+    Median: 20
+
+================================================================================
+TRAINING SPARSE MARKOV CHAIN MODEL
+================================================================================
+Fitting Markov Chain...
+Initialized with 33190 states
+Processed 10000 sequences...
+Processed 20000 sequences...
+Processed 30000 sequences...
+Processed 40000 sequences...
+Processed 50000 sequences...
+Processed 60000 sequences...
+Processed 70000 sequences...
+Processed 80000 sequences...
+Processed 90000 sequences...
+Processed 100000 sequences...
+Processed 110000 sequences...
+Processed 120000 sequences...
+Processed 130000 sequences...
+Processed 140000 sequences...
+Processed 150000 sequences...
+Processed 151565 sequences with 4953912 total transitions
+Non-zero transitions: 632044
+Sparsity: 0.999426
+Computing transition probabilities...
+Found 529 states with no outgoing transitions
+Transition matrix: 33190x33190 with 18189554 non-zero elements
+
+Training completed in 50.98 seconds
+
+
+Computing steady state using power method...
+Converged after 108 iterations
+==================================================
+SPARSE MARKOV CHAIN STATISTICS
+==================================================
+States: 33,190
+Total transitions: 4,953,912
+Non-zero transitions: 18,189,554
+Sparsity: 0.983488
+Memory usage: 208.54 MB
+Entropy: 5.4122 bits
+States with no outgoing transitions: 0
+
+Top 10 most probable states (steady state):
+   1. N3491: 0.014539
+   2. N36424: 0.011857
+   3. N33981: 0.010778
+   4. N22816: 0.010141
+   5. N15676: 0.009880
+   6. N35671: 0.008846
+   7. N48925: 0.007553
+   8. N5379: 0.006648
+   9. N40509: 0.006608
+  10. N2678: 0.006205
+
+Memory efficiency:
+  Sparse matrix: 208.54 MB
+  Dense matrix would be: 8.2 GB
+  Memory saved: 8195.8 MB
+==================================================
+
+Validating model...
+  ✓ fitted: True
+  ✓ rows_sum_to_one: True
+  ✓ non_negative_probs: True
+  ✓ probs_le_one: True
+  ✓ state_consistency: True
+
+Saving model to markov_model.pkl...
+Model saved to markov_model.pkl
+
+================================================================================
+PREPARING TEST DATA
+================================================================================
+Total unique news articles: 65,238
+
+Preparing test data (min_history=2)...
+  Test cases: 68,114
+  Skipped: 5,038
+
+================================================================================
+EVALUATING MODEL
+================================================================================
+
+Evaluating 68,114 test cases...
+  Processed 10,000 / 68,114 test cases...
+  Processed 20,000 / 68,114 test cases...
+  Processed 30,000 / 68,114 test cases...
+  Processed 40,000 / 68,114 test cases...
+  Processed 50,000 / 68,114 test cases...
+  Processed 60,000 / 68,114 test cases...
+
+--------------------------------------------------------------------------------
+EVALUATION RESULTS
+--------------------------------------------------------------------------------
+
+Coverage: 98.19% (66,878 / 68,114)
+Skipped: 1,236 (unknown states/targets)
+
+Hit Rate @ K:
+  Hit Rate @  1:   2.78%
+  Hit Rate @  5:   8.61%
+  Hit Rate @ 10:  13.29%
+  Hit Rate @ 20:  19.62%
+  Hit Rate @ 50:  30.25%
+
+Mean Reciprocal Rank (MRR): 0.0620
+--------------------------------------------------------------------------------
+
+================================================================================
+PREDICTION EXAMPLES
+================================================================================
+
+Example 1:
+  History length: 14
+  Last 5 history items:
+    N6616 (news)
+    N47686 (lifestyle)
+    N63573 (news)
+    N38895 (news)
+    N30924 (health)
+  Target: N35671 (tv)
+  Top 10 predictions:
+     1. N7019 (finance): 0.041398
+     2. N14761 (weather): 0.028519
+     3. N52551 (tv): 0.024839
+     4. N1843 (tv): 0.023919
+     5. N53895 (sports): 0.022079
+     6. N34564 (sports): 0.021159
+     7. N26364 (sports): 0.020239
+     8. N30765 (movies): 0.018399
+     9. N1969 (foodanddrink): 0.016559
+    10. N4052 (news): 0.015639
+
+Example 2:
+  History length: 12
+  Last 5 history items:
+    N34775 (news)
+    N33742 (finance)
+    N50020 (weather)
+    N57061 (finance)
+    N30924 (health)
+  Target: N6778 (lifestyle)
+  Top 10 predictions:
+     1. N7019 (finance): 0.041398
+     2. N14761 (weather): 0.028519
+     3. N52551 (tv): 0.024839
+     4. N1843 (tv): 0.023919
+     5. N53895 (sports): 0.022079
+     6. N34564 (sports): 0.021159
+     7. N26364 (sports): 0.020239
+     8. N30765 (movies): 0.018399
+     9. N1969 (foodanddrink): 0.016559
+    10. N4052 (news): 0.015639
+
+Example 3:
+  History length: 8
+  Last 5 history items:
+    N16233 (news)
+    N61704 (lifestyle)
+    N51706 (sports)
+    N53033 (news)
+    N15634 (entertainment)
+  Target: N3259 (sports)
+  Top 10 predictions:
+     1. N11700 (entertainment): 0.028526
+     2. N41351 (finance): 0.026149
+     3. N26837 (lifestyle): 0.026149
+     4. N1066 (entertainment): 0.023772
+     5. N16715 (news): 0.017433
+     6. N57886 (lifestyle): 0.015848
+     7. N16290 (news): 0.015848
+     8. N5978 (finance): 0.015055
+     9. N31663 (movies): 0.014263
+    10. N47765 (sports): 0.014263
+
+Example 4:
+  History length: 18
+  Last 5 history items:
+    N34452 (travel)
+    N24298 (video)
+    N29361 (news)
+    N2597 (sports)
+    N28926 (sports)
+  Target: N28247 (news)
+  Top 10 predictions:
+     1. N1766 (sports): 0.059006
+     2. N13231 (news): 0.044255
+     3. N24298 (video): 0.042702
+     4. N39677 (news): 0.034938
+     5. N35560 (entertainment): 0.033385
+     6. N29361 (news): 0.029503
+     7. N538 (sports): 0.028727
+     8. N5183 (sports): 0.023292
+     9. N712 (sports): 0.021739
+    10. N51618 (news): 0.018634
+
+Example 5:
+  History length: 4
+  Last 5 history items:
+    N51692 (tv)
+    N18285 (sports)
+    N26015 (entertainment)
+    N22679 (sports)
+  Target: N55556 (finance)
+  Top 10 predictions:
+     1. N46394 (sports): 0.142857
+     2. N63180 (music): 0.102041
+     3. N53883 (health): 0.102041
+     4. N40781 (sports): 0.102041
+     5. N619 (news): 0.102041
+     6. N41710 (sports): 0.081633
+     7. N5351 (video): 0.081633
+     8. N27756 (finance): 0.071429
+     9. N62634 (finance): 0.051020
+    10. N49134 (sports): 0.040816
+
+================================================================================
+SAVING RESULTS
+================================================================================
+Results saved to evaluation_results.pkl
+
+================================================================================
+TRAINING AND EVALUATION COMPLETE!
+================================================================================

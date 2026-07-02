@@ -1,0 +1,17 @@
+Instructions and Design for the Markov Chain based News Recommender System
+
+
+Step 1
+Ensure ./markov.py has the ability to  support a proper, sparse, markov Chain
+
+Step 2
+Now, Inspect and learn about the dataset's features. 
+Dataset is located in the paths as specified in ./SparseMarkov.ipynb. That was an incomplete 
+attempt at this idea. Learn about the dataset from it.
+
+Step 3
+Now train on the training set and test on the test set (separate datasets as given)
+
+
+
+

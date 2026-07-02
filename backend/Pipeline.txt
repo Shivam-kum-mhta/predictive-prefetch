@@ -1,0 +1,122 @@
+MODEL PIPELINE
+
+All your scripts and files and models put it in app/models/markov_v2
+Work within that directory
+
+=====
+PREPROCESS
+=====
+
+STEP 1.1: Load datasets
+
+Training behaviours set: datasets/behaviors_train_clean.tsv
+Head(2):
+1	U13740	11/11/2019 9:05:58 AM	N55189 N42782 N34694 N45794 N18445 N63302 N10414 N19347 N31801	N55689-1 N35729-0
+2	U91836	11/12/2019 6:11:30 PM	N31739 N6072 N63045 N23979 N35656 N43353 N8129 N1569 N17686 N13008 N21623 N6233 N14340 N48031 N62285 N44383 N23061 N16290 N6244 N45099 N58715 N59049 N7023 N50528 N42704 N46082 N8275 N15710 N59026 N8429 N30867 N56514 N19709 N31402 N31741 N54889 N9798 N62612 N2663 N16617 N6087 N13231 N63317 N61388 N59359 N51163 N30698 N34567 N54225 N32852 N55833 N64467 N3142 N13912 N29802 N44462 N29948 N4486 N5398 N14761 N47020 N65112 N31699 N37159 N61101 N14761 N3433 N10438 N61355 N21164 N22976 N2511 N48390 N58224 N48742 N35458 N24611 N37509 N21773 N41011 N19041 N25785	N20678-0 N39317-0 N58114-0 N20495-0 N42977-0 N22407-0 N14592-0 N17059-1 N33677-0 N7821-0 N6890-0
+
+Test behaviours set: datasets/behaviors_test_clean.tsv
+Head(2):
+23	U19722	11/13/2019 5:53:14 PM	N2028 N40613 N459 N27851 N59345 N55231 N12889 N46483 N879 N3500 N17403 N700 N48987 N7100 N20145 N7048 N8552 N36676 N10815 N871 N64408 N13679 N9680 N63260 N61449 N26978 N59231 N32483 N4020 N28419 N34627 N51706 N44361 N31057 N54698 N47525 N54822 N64591 N25577 N64314 N32663 N6154 N60340 N20792 N9226 N56630 N6622 N63429 N45794 N41404 N18905 N32312 N43781 N63258 N38802 N5978 N58090 N29276 N58264 N41616 N59359 N8676 N33092 N5902 N13850 N34590 N46131 N34323 N19706 N18355 N46616 N43142 N54522 N26746 N6831 N11231 N41926 N63855 N9674 N19660 N46473 N36271 N24150 N6915 N20575 N6767 N20602	N11769-0 N29517-0 N7121-0 N56548-0 N4642-0 N45509-0 N19776-0 N29553-0 N29536-0 N8084-0 N51195-0 N3957-0 N60550-0 N27417-0 N25088-0 N5652-0 N64305-0 N8509-0 N51048-0 N33831-0 N14547-0 N58114-0 N55268-1 N20356-0 N4510-0 N4404-0 N47717-0 N46477-0 N60186-0 N10746-0 N18312-0 N45742-0 N60678-0 N23864-0 N49483-0 N41612-0 N21420-0 N7618-0 N51287-0 N44249-0 N61623-0 N27869-0 N62563-0 N31948-0 N36266-0 N48705-0 N26081-0 N41172-0 N18059-0 N56214-0 N35047-0 N4066-0 N36261-0 N26262-0 N52662-0 N62933-0 N52471-0 N5597-0 N47346-0 N52554-0 N21701-0 N31893-0 N23081-0 N52294-0 N49956-0 N59186-0 N64252-1 N22417-0 N14029-0 N51194-0 N3431-0 N37437-0 N63106-0
+35	U78244	11/12/2019 12:58:56 PM	N39830 N12889 N56537 N6056 N56253 N51111 N3893 N55846 N48914 N41049 N13233 N29680 N55189 N27448 N34004 N46843 N44956 N63276 N36275 N14629 N18760 N13180 N25273 N62690 N19236 N871 N14644 N41252 N46978 N40824 N64634 N14607 N56692 N44559 N30662 N58571 N19131 N36275 N61347 N13180 N61217 N10235 N55326 N8422 N995 N20147 N36053 N6397 N57296 N50027 N56736 N60470 N12197 N1603 N16636 N46573 N22561 N13137 N42137 N58638 N48600 N14514 N57924 N34399 N5102 N5735 N55743 N60184 N41797 N306 N28088 N23196 N43587 N23196 N38924 N40070 N13689 N19300 N64193 N55497 N47277 N32069 N11246 N46966 N5283 N52551 N29690 N17128 N44923 N4607 N14742 N4970 N37394 N38310 N37663 N10470 N59922 N59327 N47615 N2782 N20357	N16096-0 N54125-0 N28495-0 N32544-0 N62386-0 N41354-0 N52094-0 N38309-0 N62360-0 N33212-0 N36186-0 N6056-0 N14726-0 N43266-1 N60272-0 N62563-0 N57754-0 N44742-0 N23081-0 N7419-0 N3344-0 N6975-0 N38490-0 N64851-0 N30518-0 N52294-0 N22407-0 N45422-0 N1785-0 N61404-0 N22339-0 N61822-0 N21741-0 N166-0 N47412-0 N40839-0 N36850-0 N22029-0 N29715-0 N27289-0 N23008-0 N30920-0 N36516-0 N34110-0 N43102-0 N58363-0 N18887-0 N3123-0 N3841-0 N55950-0 N19318-0 N11269-0 N49180-0 N64228-0 N42634-0 N32182-0 N41020-0 N2823-0 N40468-0 N59469-0 N17586-0 N33883-0 N31978-0 N44422-0 N48410-0 N11817-1 N63970-0 N64152-0 N59407-0 N33755-0 N55606-0 N18947-0 N50619-0
+
+All news article data set: datasets/news_all_clean.tsv
+Head(2):
+N55528	lifestyle	lifestyleroyals	The Brands Queen Elizabeth, Prince Charles, and Prince Philip Swear By	Shop the notebooks, jackets, and more that the royals can't live without.	https://assets.msn.com/labs/mind/AAGH0ET.html	[{"Label": "Prince Philip, Duke of Edinburgh", "Type": "P", "WikidataId": "Q80976", "Confidence": 1.0, "OccurrenceOffsets": [48], "SurfaceForms": ["Prince Philip"]}, {"Label": "Charles, Prince of Wales", "Type": "P", "WikidataId": "Q43274", "Confidence": 1.0, "OccurrenceOffsets": [28], "SurfaceForms": ["Prince Charles"]}, {"Label": "Elizabeth II", "Type": "P", "WikidataId": "Q9682", "Confidence": 0.97, "OccurrenceOffsets": [11], "SurfaceForms": ["Queen Elizabeth"]}]	[]
+N19639	health	weightloss	50 Worst Habits For Belly Fat	These seemingly harmless habits are holding you back and keeping you from shedding that unwanted belly fat for good.	https://assets.msn.com/labs/mind/AAB19MK.html	[{"Label": "Adipose tissue", "Type": "C", "WikidataId": "Q193583", "Confidence": 1.0, "OccurrenceOffsets": [20], "SurfaceForms": ["Belly Fat"]}]	[{"Label": "Adipose tissue", "Type": "C", "WikidataId": "Q193583", "Confidence": 1.0, "OccurrenceOffsets": [97], "SurfaceForms": ["belly fat"]}]
+
+
+
+
+STEP 1.3: Calculate Views (SKIP FOR NOW)
+
+First, check if 'Views' column exists, or else,
+Parse every behaviour in training set one by one
+for each unique article read, increment viewcount of that article ID by one
+Using this, extract viewcount of all the articles and 
+add it as the last column in each row in news_all_clean.tsv
+
+
+
+
+====
+TRAINING
+====
+STEP 2.1: Build the Markov models
+
+This is the most important step of all. It can be divided into
+1. programs writing phase - 
+    - the actual model's code, refer to app/models/markov_v1/markov.py for reference
+    - the training script to load dataset, etc.etc., refer to app/models/markov_v1/train_and_evaluate.py
+2. running phase
+
+
+We will be training 2 markov chain models side by side while training
+
+one is at the article level, with all articles as states
+just as we did with @markov.py and @train_and_evaluate.py 
+
+second is at the category level, with the categories as states
+and for each transition we see, we map probabilities from from category to to category
+
+You can do this by referring to @markov.py file and the corresponding @train_and_evaluate.py file 
+used in @markov_v1/ folder. Rewrite them to account for the category and article level models
+
+
+
+STEP 2.2 — Semantic Similarity Smoothing
+
+After your base transition matrix is formed, apply a semantic similarity pass to smooth it.
+For each article A, find top-N semantically similar articles (A₁, A₂, …) using precomputed embeddings (e.g., MiniLM, all-MiniLM-L6-v2).
+For each outgoing transition from A (say A → B with probability p),
+spread a small fraction (say 10–20%) of p to transitions from its similar neighbours (A₁, A₂, …) to B.
+
+Re-normalize probabilities so they sum to 1 again.
+(This helps fill gaps for underrepresented articles — the “smoothing” makes behaviour more generalizable.)
+
+You can do this by using RetrieveSimilarTitlesById() from @app/embeddings/embeddings.py file.
+Read this file carefully when you get to this step.
+
+
+STEP 3.3 - Run the training
+Run it. Before this step, don't actually begin training at all.
+
+===
+INFERENCE & TESTING
+===
+STEP 3.1: Intro
+
+We'll open up the 10K samples we set aside earlier.
+Test dataset is a set of user behaviours, with the same unique articles and users as the 
+training set.
+
+We test for 3 main metrics in our recommender system.
+1. Hit Rate @ K - K is tested with 1, 2, 4, 8, 16
+2. Mean Reciprocal Rank (MRR)
+3. Average Rank when found
+
+
+
+STEP 3.2: How to blend the two models to get top K predictions
+
+Get next-article probabilities from article-level model: P_article[B|A]
+Get next-category probabilities from category model: P_category[cat(B)|cat(A)], spread across articles in that category
+Blend both: score[B] = α * P_article[B|A] + (1 - α) * P_category[cat(B)|cat(A)]
+Rank by final score[B] and return top-K
+
+STEP 3.3: How to apply reorder heuristics on top K
+
+Study how /app/models/api.py and @prediction.py uses the sliders
+Use slider biases for testing inferences
+Further discussion on this once previous steps are done
+
+
+STEP 3.4: Begin Testing
+Start testing for the metrics as described
+1. Hit Rate @ K - K is tested with 1, 2, 4, 8, 16
+2. Mean Reciprocal Rank (MRR)
+3. Average Rank when found
+
+Use whole inference process (2 models + biases) for final results
+
+
+STEP 3.5: Report
